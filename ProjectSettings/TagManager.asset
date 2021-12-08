@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Floor
+  - Ceiling
+  - Window
+  - Door
+  - Table
+  - Polygon
   - 
   - 
   - 
