@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace VRoom
 {
-#endif
     public class LayerMaskEx
     {
         /// <summary>

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TypeName: Window
-  <Name>k__BackingField: 
+  TypeName2: Window
 --- !u!1 &4142844771659623943
 GameObject:
   m_ObjectHideFlags: 0

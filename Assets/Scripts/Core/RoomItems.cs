@@ -63,7 +63,8 @@ namespace VRoom
         public void AddItem(ItemType type, GameObject itemGO)
         {
             RoomItem newRoomItem = itemGO.AddComponent<RoomItem>();
-            newRoomItem.Type = type;
+            // newRoomItem.Type = type;
+            newRoomItem.SetType(type);
             newRoomItem.SetLayer(type.Name);         
             AddItem(newRoomItem);
         }

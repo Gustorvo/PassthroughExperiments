@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TypeName: Polygon
+  TypeName2: Polygon
   _polygonGO: {fileID: 7773114119279051412}
 --- !u!1 &7773114119279051412
 GameObject:
