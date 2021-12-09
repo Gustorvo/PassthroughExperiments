@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RoomMapperExtended.unity
     guid: 628f8f645066e764cade2d34f1618d73
+  - enabled: 1
+    path: Assets/Oculus/SampleFramework/Usage/SpatialAnchor.unity
+    guid: 1db179c458352bf46beb307fd047d589
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: e8fc3e980aa61424c954f381788829c1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8b29ee83a915d824fbe5f01e3071132a, type: 2}
