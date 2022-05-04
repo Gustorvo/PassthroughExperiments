@@ -8,8 +8,8 @@ namespace VRoom
     public class CarouselMover : MonoBehaviour
     {
         [Header("Spring values")]
-        [SerializeField] float _moveDamping = 0.5f;
-        [SerializeField] float _moveFrequency = 3f;
+        [SerializeField] float _damping = 0.5f;
+        [SerializeField] float _frequency = 3f;
         /// <summary>
         /// is carousel currently moming/rotating?
         /// </summary>
@@ -32,16 +32,12 @@ namespace VRoom
         private void Update()
         {
             transform.position = _menu.Anchor.position;
-
-            // tween position
-            NumericSpring(ref _curAngleZ, ref _velocity, _targetAngleZ, _moveDamping, _moveFrequency * Mathf.PI, Time.deltaTime);
+            // tween position by numeric spring
+            NumericSpring(ref _curAngleZ, ref _velocity, _targetAngleZ, _damping, _frequency * Mathf.PI, Time.deltaTime);
             Quaternion newRot = _menu.Anchor.rotation * Quaternion.AngleAxis(_curAngleZ, Vector3.forward);
             transform.rotation = newRot;
-            if (IsMoving) 
-            {         
-                // by setting forward vector, we essentially rotate each item to align with up vector
-                _menu.ItemList.ForEach(i => i.Icon.transform.forward = _menu.Anchor.forward);
-            }
+            // by setting forward vector, we essentially rotate each item to align with up vector
+            _menu.ItemList.ForEach(i => i.Icon.transform.forward = _menu.Anchor.forward);
         }
         private void RotateCarousel(int step)
         {
@@ -51,7 +47,7 @@ namespace VRoom
         //  The variables curValue and velocity are initialized once and then
         //  passed into the function by reference every frame,
         //  where the function keeps updating their values every time it’s called.
-        // source: http://allenchou.net/2015/04/game-math-precise-control-over-numeric-springing/
+        //  source: http://allenchou.net/2015/04/game-math-precise-control-over-numeric-springing/
         void NumericSpring(ref float curValue, ref float velocity, float targetValue, float damping, float angFreq, float timeStep)
         {
             // it may take very long time untill spring comes to rest...

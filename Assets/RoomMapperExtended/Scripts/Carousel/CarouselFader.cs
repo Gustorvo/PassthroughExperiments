@@ -111,7 +111,7 @@ namespace VRoom
 
             for (int i = 0; i < _menu.ItemList.Count; i++)
             {
-                if (i != _menu.Chosen) // skip chosen since it's aplha is already set
+                if (i != _menu.Chosen) // skip chosen since its aplha is already set
                 {
                     _menu.ItemList[i].SetColor(_lerpedColor);
                 }

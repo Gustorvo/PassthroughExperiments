@@ -1,9 +1,7 @@
-using Pixelplacement;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace VRoom
 {
@@ -12,7 +10,8 @@ namespace VRoom
     /// </summary>
     public class CarouselMenu : MonoBehaviour
     {
-        [SerializeField] Transform _stateMachineParent;
+        [SerializeField] XRController _controller;
+        [SerializeField] Transform _menuItemsParent;
         [SerializeField] Transform _carouselAnchor;
         [SerializeField, Range(.01f, .5f)] float _carouselRadius = 0.05f;
       
@@ -37,17 +36,18 @@ namespace VRoom
             }
         }
 
+        public int _chosen;
         private int _capacity => _itemsPositions.Length - 1;
         private int _prevIndex;
         private Vector3[] _itemsPositions;
-        public int _chosen;
+        private bool _active = false;
 
         private void Awake()
         {
             // populate list of menu items                
-            for (int i = 0; i < _stateMachineParent.childCount; i++)
+            for (int i = 0; i < _menuItemsParent.childCount; i++)
             {
-                var child = _stateMachineParent.GetChild(i);
+                var child = _menuItemsParent.GetChild(i);
                 if (child.TryGetComponent(out MenuItem newItem) && !ItemList.Contains(newItem))
                 {
                     ItemList.Add(newItem);
@@ -55,8 +55,15 @@ namespace VRoom
                 }
             }
             RebuildCarousel();
+        }        
+
+        public void ToogleVisibility()
+        {
+            bool active = !_active;
+            _active = active;
+            Debug.Log($"-----------------Toggling menu items {active}-----------------");
+            ItemList.ForEach(i => i.Icon.SetActive(active));
         }
-       
 
         private void Start()
         {
@@ -96,7 +103,7 @@ namespace VRoom
         }
 
         /// <summary>
-        /// shifts chosen by one (-1/1)
+        /// shifts chosen by step (-1/1)
         /// </summary>
         /// <param name="step"></param>
         public void ShiftChosen(int step)
